@@ -1,5 +1,5 @@
 import sympy as sp
-from sympy.abc import x
+from sympy.abc import x,y,z
 
 #%%defninmos parametros
 #geometria y propiedades mecanicas
