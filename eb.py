@@ -1,5 +1,5 @@
 import sympy as sp
-from sympy.abc import x,y,z
+from sympy.abc import x
 
 #%%defninmos parametros
 #geometria y propiedades mecanicas
@@ -34,3 +34,4 @@ mom           =m*int_mom(xm, x)
 q1=q_sin_momento*rect(0, 1, x) 
 V1 = integre(q1, x)+c1_1
 t=integre(V1, x)+c1_2
+v1=0
