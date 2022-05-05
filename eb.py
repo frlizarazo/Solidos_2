@@ -6,6 +6,7 @@ from sympy.abc import x
 b     = 0.05                 #ancho de la viga      m
 h     = 0.25                 #altura de la viga     m
 E     = 20e6                 #modulo de elasticidad Pa
+## Hola lucho
 I     = (b*h**3)/12
 
 #carga distribuida
