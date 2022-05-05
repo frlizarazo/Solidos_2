@@ -15,7 +15,7 @@ from sympy import *
                                             'c5_1', 'c5_2', 'c5_3', 'c5_4', \
                                             'c4_1', 'c4_2', 'c4_3', 'c4_4'])
 
-for i in range(1,20):
+for i in range(1,4):
     globals()[f'c{i}_{i}']=Symbol(f'c{i}_{i}')
 
 #geometria y propiedades mecanicas
