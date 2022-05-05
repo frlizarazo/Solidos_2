@@ -1,7 +1,6 @@
 #%% Importar Librerias
 from sympy import *
 
-
 #%% Defninmos Parametros
 
 # Definir Variables Simbolicas
@@ -16,6 +15,8 @@ from sympy import *
                                             'c5_1', 'c5_2', 'c5_3', 'c5_4', \
                                             'c4_1', 'c4_2', 'c4_3', 'c4_4'])
 
+for i in range(1,20):
+    globals()[f'c{i}_{i}']=Symbol(f'c{i}_{i}')
 
 #geometria y propiedades mecanicas
 b     = 0.05                 #ancho de la viga      m
@@ -34,10 +35,11 @@ m    = 80                  #magnitud del momento kN*m
 xm   = 1                   #posicion del momento en metros
 
 #%% definimos funciones auxiliares que usaremos mas adelante
-integre =  lambda f, x : sp.integrate(f, x, meijerg=False) #facilita la notacion al integrar
-rect    =  lambda a,b,x: sp.Piecewise((0,x<a),(0,x>b),(1,True))  #permite aplicar una funcion solo en un tramo
-int_mom =  lambda a,x  : sp.DiracDelta(x-a)
-qdist = lambda f,a,b : sp.Piecewise((f, (a < x) & (x < b)), (0, True))
+
+integre =  lambda f, x : integrate(f, x, meijerg=False) #facilita la notacion al integrar
+rect    =  lambda a,b,x: Piecewise((0,x<a),(0,x>b),(1,True))  #permite aplicar una funcion solo en un tramo
+int_mom =  lambda a,x  : DiracDelta(x-a)
+qdist   = lambda f,a,b : Piecewise((f, (a < x) & (x < b)), (0, True))
 # sp.DiracDelta
 
 #definimos el vector de cargas
