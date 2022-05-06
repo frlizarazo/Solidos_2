@@ -24,7 +24,6 @@ h     = 0.25                 #altura de la viga     m
 E     = 20e6                 #modulo de elasticidad Pa
 I     = (b*h**3)/12
 
-
 #carga distribuida
 qd   = 100*x/3 - 300      #funcion de la carga distribuida kN/m
 xdi  = 3                  #inicio de la carga distribuida en metros
