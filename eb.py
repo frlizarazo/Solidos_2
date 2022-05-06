@@ -13,7 +13,8 @@ from sympy import *
      #                                       'c2_1', 'c2_2', 'c2_3', 'c2_4', \
       #                                     'c5_1', 'c5_2', 'c5_3', 'c5_4', \
        #                                     'c4_1', 'c4_2', 'c4_3', 'c4_4'])
-for j in range(1,5)
+x=symbols('x')
+for j in range(1,5):
     for i in range(1,4):
         globals()[f'c{i}_{i}']=Symbol(f'c{i}_{i}')
 
