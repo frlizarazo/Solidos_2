@@ -5,18 +5,17 @@ from sympy import *
 
 # Definir Variables Simbolicas
 
-[x, c1_1, c1_2, c1_3, c1_4, \
-    c2_1, c2_2, c2_3, c2_4, \
-    c3_1, c3_2, c3_3, c3_4, \
-    c5_1, c5_2, c5_3, c5_4, \
-    c4_1, c4_2, c4_3, c4_4] = symbols(['x', 'c1_1', 'c1_2', 'c1_3', 'c1_4', \
-                                            'c2_1', 'c2_2', 'c2_3', 'c2_4', \
-                                            'c3_1', 'c3_2', 'c3_3', 'c3_4', \
-                                            'c5_1', 'c5_2', 'c5_3', 'c5_4', \
-                                            'c4_1', 'c4_2', 'c4_3', 'c4_4'])
-
-for i in range(1,4):
-    globals()[f'c{i}_{i}']=Symbol(f'c{i}_{i}')
+#[x, c1_1, c1_2, c1_3, c1_4, \
+ #   c2_1, c2_2, c2_3, c2_4, \
+  #  c3_1, c3_2, c3_3, c3_4, \
+   # c5_1, c5_2, c5_3, c5_4, \
+    #c4_1, c4_2, c4_3, c4_4] = symbols(['x', 'c1_1', 'c1_2', 'c1_3', 'c1_4', \
+     #                                       'c2_1', 'c2_2', 'c2_3', 'c2_4', \
+      #                                     'c5_1', 'c5_2', 'c5_3', 'c5_4', \
+       #                                     'c4_1', 'c4_2', 'c4_3', 'c4_4'])
+for j in range(1,5)
+    for i in range(1,4):
+        globals()[f'c{i}_{i}']=Symbol(f'c{i}_{i}')
 
 #geometria y propiedades mecanicas
 b     = 0.05                 #ancho de la viga      m
