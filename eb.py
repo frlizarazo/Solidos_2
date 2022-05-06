@@ -14,9 +14,9 @@ from sympy import *
       #                                     'c5_1', 'c5_2', 'c5_3', 'c5_4', \
        #                                     'c4_1', 'c4_2', 'c4_3', 'c4_4'])
 x=symbols('x')
-for j in range(1,5):
-    for i in range(1,4):
-        globals()[f'c{i}_{i}']=Symbol(f'c{i}_{i}')
+for i in range(1,5+1):
+    for j in range(1,4+1):
+     globals()[f'c{i}_{j}']=Symbol(f'c{i}_{j}')
 
 #geometria y propiedades mecanicas
 b     = 0.05                 #ancho de la viga      m
@@ -47,6 +47,38 @@ mom           =m*int_mom(xm, x)
 
 #%%resolvemos la ecuacion diferencial por tramo
 #tramo 1
-q1=q_sin_momento*rect(0, 1, x) 
-V1 = integre(q1, x)+c1_1
-t=integre(V1, x)+c1_2
+q1 = q_sin_momento*rect(0, 1, x) 
+V1 = integre(q1, x)+ mom  +c1_1
+M1 = integre(V1, x)       +c1_2
+t1 = integre(M1, x)       +c1_3
+v1 = integre(t1, x)       +c1_4
+
+#tramo 2
+
+q2 = q_sin_momento*rect(1, 3, x) 
+V2 = integre(q2, x)+ mom  +c2_1
+M2 = integre(V2, x)       +c2_2
+t2 = integre(M2, x)       +c2_3
+v2 = integre(t2, x)       +c2_4
+
+#tramo 3
+
+q3 = q_sin_momento*rect(3, 4, x) 
+V3 = integre(q3, x)+ mom  +c3_1
+M3 = integre(V3, x)       +c3_2
+t3 = integre(M3, x)       +c3_3
+v3 = integre(t3, x)       +c3_4
+#tramo 4
+
+q4 = q_sin_momento*rect(4, 5, x) 
+V4 = integre(q2, x)+ mom  +c4_1
+M4 = integre(V2, x)       +c4_2
+t4 = integre(M2, x)       +c4_3
+v4 = integre(t2, x)       +c4_4
+#tramo 5
+
+q5 = q_sin_momento*rect(5, 6, x) 
+V5 = integre(q2, x)+ mom  +c5_1
+M5 = integre(V2, x)       +c5_2
+t5 = integre(M2, x)       +c5_3
+v5 = integre(t2, x)       +c5_4
