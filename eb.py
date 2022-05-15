@@ -16,7 +16,7 @@ from sympy import *
 x=symbols('x')
 for i in range(1,5+1):
     for j in range(1,4+1):
-     globals()[f'c{i}_{j}']=Symbol(f'c{i}_{j}')
+        globals()[f'c{i}_{j}']=Symbol(f'c{i}_{j}')
 
 #geometria y propiedades mecanicas
 b     = 0.05                 #ancho de la viga      m
@@ -28,6 +28,12 @@ I     = (b*h**3)/12
 qd   = 100*x/3 - 300      #funcion de la carga distribuida kN/m
 xdi  = 3                  #inicio de la carga distribuida en metros
 xdf  = 6                  #final  de la carga distribuida en metros
+
+#constantes resortes
+
+k1=1000                  #kN/m
+k2=1000                  #kN/m
+k3=500                   #kN*m/rad
 
 #momentos
 m    = 80                  #magnitud del momento kN*m
@@ -46,6 +52,7 @@ q_sin_momento =qdist(qd,xdi,xdf)
 mom           =m*int_mom(xm, x)
 
 #%%resolvemos la ecuacion diferencial por tramo
+
 #tramo 1
 q1 = q_sin_momento*rect(0, 1, x) 
 V1 = integre(q1, x)+ mom  +c1_1
@@ -82,3 +89,41 @@ V5 = integre(q2, x)+ mom  +c5_1
 M5 = integre(V2, x)       +c5_2
 t5 = integre(M2, x)       +c5_3
 v5 = integre(t2, x)       +c5_4
+
+#%% hallamos valor de las constantes
+sol = solve([ 
+    Eq(v1.subs(x,0), 0),               # despl vert en apoyo en x=0 es 0  
+    Eq(t1.subs(x,0), 0),               # theta en apoyo en x=0 es 0      
+     
+    Eq(v1.subs(x,1), 0.03),            # despl vert en apoyo en x=1 es 0 
+    Eq(v2.subs(x,1), 0.03),            # despl vert en apoyo en x=1 es 0 
+    Eq(t1.subs(x,1), t2.subs(x,1)),    # continuidad en theta en x=1     
+    Eq(M1.subs(x,1), M2.subs(x,1)),    # continuidad en M     en x=1  
+       
+    Eq(v2.subs(x,3), 0),               # despl vert en apoyo en  x=3 es 0 
+    Eq(v3.subs(x,3), 0),               # despl vert en apoyo en  x=3 es 0 
+    Eq(t2.subs(x,3), t3.subs(x,3)),    # continuidad en theta en x=3      
+    Eq(M2.subs(x,3), M3.subs(x,3)),    # continuidad en M     en x=3    
+      
+    Eq(v3.subs(x,4), v4.subs(x,4)),                    # continuidad de desplazamientos
+    Eq(M3.subs(x,4), M4.subs(x,4)),                    # continuidad en M     en x=4   
+    Eq(t3.subs(x,4), t4.subs(x,4)),                    # continuidad en theta en x=4     
+    Eq(V3.subs(x,4), V4.subs(x,4)-k1*v4.subs(x,4)),    #cortante en cada tramo 
+    
+    Eq(v4.subs(x,5), 0),               # despl vert en apoyo en  x=5 es 0 
+    Eq(v5.subs(x,3), 0),               # despl vert en apoyo en  x=5 es 0 
+    Eq(t4.subs(x,3), t4.subs(x,3)),    # continuidad en theta en x=5     
+    Eq(M2.subs(x,3), M3.subs(x,3)),    # continuidad en M     en x=5  
+    
+    Eq(V5.subs(x,6), -k2*v5.subs(x,6)), #accion del resorte en la cortante
+    Eq(M5.subs(x,6), -k3*t5.subs(x,6)), #accion del resorte en la cortante
+    
+],
+[ 
+     c1_1, c1_2, c1_3, c1_4, 
+     c2_1, c2_2, c2_3, c2_4, 
+     c3_1, c3_2, c3_3, c3_4, 
+     c4_1, c4_2, c4_3, c4_4, 
+     c5_1, c5_2, c5_3, c5_4 
+     
+])
