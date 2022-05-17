@@ -134,8 +134,8 @@ t = (t1*rect(0,1) + t2*rect(1,3) + t3*rect(3,4) + t4*rect(4,5) + t5*rect(5,6)).s
 v = (v1*rect(0,1) + v2*rect(1,3) + v3*rect(3,4) + v4*rect(4,5) + v5*rect(5,6)).subs(sol)
 
 # %% Se simplifica lo calculado por sympy
-V = (V.rewrite(Piecewise)) #.nsimplify() piecewise_fold                 
-M = (M.rewrite(Piecewise)) #.nsimplify() piecewise_fold                
+V = nsimplify(V.rewrite(Piecewise))                   
+M = (M.rewrite(Piecewise)) #.nsimplify()                 
 t = (t.rewrite(Piecewise))               #piecewise_fold  
 v = (v.rewrite(Piecewise))               #piecewise_fold  
 
