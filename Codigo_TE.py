@@ -72,7 +72,8 @@ v5 = integre(t5-V5/(alpha*G*A), x) + c5_4
 
 sol = solve([ 
     Eq(v1.subs(x,0), 0),               # despl vert en apoyo en x=0 es 0  
-    Eq(t1.subs(x,0), 0),               # theta en apoyo en x=0 es 0      
+    #Eq(t1.subs(x,0), 0),               # theta en apoyo en x=0 es 0      
+    Eq(diff(v1,x).subs(x,0), 0),               # theta en apoyo en x=0 es 0      
      
     Eq(v1.subs(x,1), - 0.03),            # despl vert en apoyo en x=1 es 0 
     Eq(v2.subs(x,1), - 0.03),            # despl vert en apoyo en x=1 es 0 
